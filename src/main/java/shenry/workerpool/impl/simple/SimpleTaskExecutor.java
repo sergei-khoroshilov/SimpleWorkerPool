@@ -1,4 +1,4 @@
-package shenry.workerpool.impl;
+package shenry.workerpool.impl.simple;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +68,7 @@ public class SimpleTaskExecutor implements TaskExecutor {
         public void addTask(Runnable task) {
             try {
                 tasks.put(task);
-            } catch(InterruptedException ignored) {
+            } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
         }

@@ -2,7 +2,8 @@ package shenry.workerpool;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import shenry.workerpool.impl.SimpleTaskExecutor;
+import shenry.workerpool.impl.simple.SimpleTaskExecutor;
+import shenry.workerpool.impl.advanced.AdvancedTaskExecutor;
 
 public class App {
 
@@ -42,7 +43,8 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        TaskExecutor executor = new SimpleTaskExecutor(4);
+        //TaskExecutor executor = new SimpleTaskExecutor(4);
+        TaskExecutor executor = new AdvancedTaskExecutor(4);
         executor.start();
         executor.addTask(1, new Task("1-1"));
         executor.addTask(1, new Task("1-2"));
