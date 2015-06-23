@@ -85,12 +85,18 @@ public class SimpleTaskExecutor implements TaskExecutor {
             tasks.clear();
         }
 
+        /**
+         * TODO Remember clientIds that have tasks that were executed with errors.
+         * TODO Do not execute task of a client if previous task of this client was executed with errors.
+         */
         private void threadRun() {
             while (!Thread.currentThread().isInterrupted()) {
                 try {
                     tasks.take().run();
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
+                } catch (Exception ex) {
+                    logger.error("Error executing tasks", ex);
                 }
             }
         }
